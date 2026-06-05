@@ -2,35 +2,27 @@ const express = require("express");
 
 const router = express.Router();
 
+const {
+  createPlan,
+  getPlans
+} = require("../controllers/planController");
+
 const protect =
 require("../middleware/authMiddleware");
 
 const adminOnly =
 require("../middleware/adminMiddleware");
 
-const {
-  getStats
-} = require("../controllers/adminController");
-
-router.get(
-  "/dashboard",
+router.post(
+  "/",
   protect,
   adminOnly,
-  (req, res) => {
-
-    res.json({
-      message:
-      "Welcome Admin Dashboard"
-    });
-
-  }
+  createPlan
 );
 
 router.get(
-  "/stats",
-  protect,
-  adminOnly,
-  getStats
+  "/",
+  getPlans
 );
 
 module.exports = router;
