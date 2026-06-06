@@ -7,10 +7,12 @@ require("../middleware/authMiddleware");
 
 const {
   subscribePlan,
-  getMySubscription
+  getMySubscription,
+  cancelSubscription
 } = require(
   "../controllers/subscriptionController"
 );
+
 
 router.post(
   "/",
@@ -23,4 +25,9 @@ router.get(
   getMySubscription
 );
 
+router.put(
+  "/cancel",
+  protect,
+  cancelSubscription
+);
 module.exports = router;

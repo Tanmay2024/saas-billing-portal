@@ -52,3 +52,44 @@ exports.getMySubscription = async (req, res) => {
 
   }
 };
+exports.cancelSubscription = async (
+  req,
+  res
+) => {
+
+  try {
+
+    const subscription =
+      await Subscription.findOne({
+        user: req.user.id
+      });
+
+    if (!subscription) {
+
+      return res.status(404).json({
+        message:
+        "Subscription not found"
+      });
+
+    }
+
+    subscription.status =
+      "cancelled";
+
+    await subscription.save();
+
+    res.json({
+      message:
+      "Subscription cancelled",
+      subscription
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message
+    });
+
+  }
+
+};
