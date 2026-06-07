@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../api";
 
 function Register() {
+  const navigate = useNavigate();
 
-  const [name,setName] = useState("");
-  const [email,setEmail] = useState("");
-  const [password,setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleRegister = async () => {
 
@@ -45,7 +47,7 @@ function Register() {
           type="text"
           placeholder="Name"
           value={name}
-          onChange={(e)=>
+          onChange={(e) =>
             setName(e.target.value)
           }
         />
@@ -54,7 +56,7 @@ function Register() {
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e)=>
+          onChange={(e) =>
             setEmail(e.target.value)
           }
         />
@@ -63,7 +65,7 @@ function Register() {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e)=>
+          onChange={(e) =>
             setPassword(e.target.value)
           }
         />
@@ -73,6 +75,26 @@ function Register() {
         >
           Register
         </button>
+
+        <p
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+            color: "white"
+          }}
+        >
+          Already have an account?{" "}
+          <span
+            onClick={() => navigate("/login")}
+            style={{
+              color: "#fbbf24",
+              cursor: "pointer",
+              fontWeight: "bold"
+            }}
+          >
+            Login
+          </span>
+        </p>
 
       </div>
 

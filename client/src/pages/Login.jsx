@@ -56,7 +56,7 @@ function Login() {
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e)=>
+          onChange={(e) =>
             setEmail(e.target.value)
           }
         />
@@ -65,16 +65,34 @@ function Login() {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e)=>
+          onChange={(e) =>
             setPassword(e.target.value)
           }
         />
 
-        <button
-          onClick={handleLogin}
-        >
+        <button onClick={handleLogin}>
           Login
         </button>
+
+        <div
+          style={{
+            marginTop: "20px",
+            textAlign: "center",
+            color: "white"
+          }}
+        >
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            style={{
+              color: "#fbbf24",
+              cursor: "pointer",
+              fontWeight: "bold"
+            }}
+          >
+            Register
+          </span>
+        </div>
 
       </div>
 
