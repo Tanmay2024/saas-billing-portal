@@ -8,6 +8,7 @@ import MySubscription
   from "./pages/MySubscription";
 import AdminDashboard
   from "./pages/AdminDashboard";
+import AdminPlans from "./pages/AdminPlans";
 
 function App() {
   return (
@@ -34,8 +35,6 @@ function App() {
           element={<Plans />}
         />
 
-
-
         <Route
           path="/subscription"
           element={<MySubscription />}
@@ -44,6 +43,11 @@ function App() {
         <Route
           path="/admin"
           element={<AdminDashboard />}
+        />
+
+        <Route
+          path="/admin-plans"
+          element={<AdminPlans />}
         />
       </Routes>
     </BrowserRouter>

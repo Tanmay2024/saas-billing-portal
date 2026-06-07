@@ -63,6 +63,19 @@ function MySubscription() {
 
     }
 
+    if (
+        !subscription ||
+        subscription.status === "cancelled"
+    ) {
+        return (
+            <div className="page">
+                <div className="card">
+                    <h1>No Active Subscription</h1>
+                </div>
+            </div>
+        );
+    }
+
     const cancelSubscription = async () => {
 
         try {
@@ -177,6 +190,7 @@ function MySubscription() {
 
                         )
                     }
+
 
                 </div>
 

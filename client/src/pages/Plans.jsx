@@ -109,18 +109,23 @@ function Plans() {
                             className="plan-card"
                         >
 
-                            <span
-                                style={{
-                                    background:
-                                        "linear-gradient(135deg,#3b82f6,#8b5cf6)",
-                                    padding: "6px 14px",
-                                    borderRadius: "20px",
-                                    fontSize: "12px",
-                                    fontWeight: "bold"
-                                }}
-                            >
-                                POPULAR
-                            </span>
+                            {plan.name === "Pro" && (
+
+                                <span
+                                    style={{
+                                        background:
+                                            "linear-gradient(135deg,#f59e0b,#fbbf24)",
+                                        color: "black",
+                                        padding: "6px 14px",
+                                        borderRadius: "20px",
+                                        fontSize: "12px",
+                                        fontWeight: "bold"
+                                    }}
+                                >
+                                    MOST POPULAR
+                                </span>
+
+                            )}
 
                             <h2
                                 style={{

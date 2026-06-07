@@ -1,5 +1,5 @@
 const Subscription =
-require("../models/Subscription");
+  require("../models/Subscription");
 
 exports.subscribePlan = async (
   req,
@@ -9,6 +9,21 @@ exports.subscribePlan = async (
   try {
 
     const { planId } = req.body;
+
+    const existingSubscription =
+      await Subscription.findOne({
+        user: req.user.id,
+        status: "active"
+      });
+
+    if (existingSubscription) {
+
+      return res.status(400).json({
+        message:
+          "You already have an active subscription"
+      });
+
+    }
 
     const subscription =
       await Subscription.create({
@@ -39,7 +54,8 @@ exports.getMySubscription = async (req, res) => {
 
     const subscription =
       await Subscription.findOne({
-        user: req.user.id
+        user: req.user.id,
+        status: "active"
       }).populate("plan");
 
     res.json(subscription);
@@ -61,14 +77,15 @@ exports.cancelSubscription = async (
 
     const subscription =
       await Subscription.findOne({
-        user: req.user.id
+        user: req.user.id,
+        status: "active"
       });
 
     if (!subscription) {
 
       return res.status(404).json({
         message:
-        "Subscription not found"
+          "No active subscription found"
       });
 
     }
@@ -80,7 +97,7 @@ exports.cancelSubscription = async (
 
     res.json({
       message:
-      "Subscription cancelled",
+        "Subscription cancelled",
       subscription
     });
 
